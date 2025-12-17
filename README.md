@@ -17,6 +17,18 @@ It is designed **strictly for educational and ethical purposes**, focusing on tr
 
 ---
 
+## Features
+- IP-based filtering
+- Port-based filtering
+- Protocol filtering (HTTP / DNS)
+- PCAP export for Wireshark analysis
+- Command-line argument handling
+- Plaintext credential pattern detection
+- Suspicious port highlighting
+- Encrypted vs unencrypted traffic comparison
+- MITM attack explanation (theory only)
+
+
 ## Technologies Used
 - Python 3
 - Scapy library
