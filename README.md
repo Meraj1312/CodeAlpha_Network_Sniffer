@@ -1,4 +1,4 @@
-# CodeAlpha Network Sniffer
+# Network Sniffer
 
 ## Overview
 This project is a Python-based **network packet sniffer** developed as part of the CodeAlpha cybersecurity internship tasks.  
