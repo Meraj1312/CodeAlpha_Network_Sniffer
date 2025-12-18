@@ -12,7 +12,7 @@ def detect_credentials(payload):
 
 def process_packet(packet, args):
     if packet.haslayer(IP):
-        ip = packet(IP)
+        ip = packet[IP]
         if args.ip and args.ip not in (ip.src, ip.dst):
             return
         
@@ -20,10 +20,10 @@ def process_packet(packet, args):
 
         if packet.haslayer(TCP):
             proto = "TCP"
-            port = packet(TCP).dport
+            port = packet[TCP].dport
         elif packet.haslayer(UDP):
             proto = "UDP"
-            port = packet(UDP).dport
+            port = packet[UDP].dport
         else:
             port = None
 
@@ -42,11 +42,10 @@ def process_packet(packet, args):
             alert = " ❗" if port in SUSPICIOUS_PORTS else ""
             print (f" Port: {port}{alert}")
 
-        if packet.haslayer[Raw]:
+        if packet.haslayer(Raw):
             payload = packet[Raw].load.decode(errors="ignore")
-
-        if detect_credentials(payload):
-            print ("    🔴 Possible Plain Text Credentials Detected")
+            if detect_credentials(payload):
+                print ("    🔴 Possible Plain Text Credentials Detected")
             
         encrypted = "YES" if port == 443 else "NO"
         print (f"    Encrypted traffic: {encrypted}")
